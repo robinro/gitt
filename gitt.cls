@@ -25,7 +25,8 @@
 
 % Import packages
 \RequirePackage{graphicx}
-\RequirePackage{color,fancyvrb,relsize}
+\RequirePackage[usenames,dvipsnames,svgnames]{xcolor}
+\RequirePackage{fancyvrb,relsize}
 \RequirePackage[final]{microtype}
 \RequirePackage{tikz}
 \RequirePackage{makeidx}
@@ -62,7 +63,8 @@
 \renewcommand{\sectionmark}[1]{\markright{\runninghead{#1}}}
 
 % Make the pdf have clickable links
-\RequirePackage[
+\RequirePackage{hyperref}
+\hypersetup{%
   bookmarks,
   bookmarksopen,
   bookmarksnumbered=false,
@@ -74,10 +76,16 @@
   pagecolor=black,
   plainpages=false,
   pdfpagelabels,
-  pdftitle={Git In the Trenches},
-  pdfauthor={Peter Savage}]{hyperref}
+}
 
-\AtBeginDocument{
+\AtBeginDocument{%
+  \hypersetup{%
+    pdftitle={\thetitle},
+    pdfauthor={\theauthor},
+  }%
+}
+
+\AtBeginDocument{%
   \hyphenpenalty=1000
   \tolerance=1000
 }
