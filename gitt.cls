@@ -50,8 +50,8 @@
 \setcounter{secnumdepth}{0}
 
 % Make chapter names disappear
-\renewcommand{\chaptername}{}
-\renewcommand{\thechapter}{}
+%\renewcommand{\chaptername}{}
+%\renewcommand{\thechapter}{}
 \renewcommand{\tablename}{}
 \renewcommand{\thetable}{}
 
@@ -81,6 +81,13 @@
   \hyphenpenalty=1000
   \tolerance=1000
 }
+
+% Set the heading styles
+\chapterstyle{dash}
+\setsecheadstyle{\Large\centering}
+\setsubsecheadstyle{\scshape\centering}
+\setsubsubsecheadstyle{\itshape\centering}
+
 
 % give us a begin{trenches}
 \newenvironment{trenches}{%
