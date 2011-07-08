@@ -40,6 +40,9 @@
 % Use Palatino for the serif font
 \RequirePackage[osf,sc]{mathpazo}
 
+% Ornaments
+\RequirePackage{adforn}
+
 % microtype makes justified text look nicer by allowing punctuation and some
 % letters to hang slightly into the margin
 \RequirePackage{microtype}
@@ -56,8 +59,17 @@
 \renewcommand{\tablename}{}
 \renewcommand{\thetable}{}
 
-% Print just the chapter name without 'Chapter #.' in the running heads
+
+% Macros for capitalizing and letter-specing text
 \RequirePackage{textcase}
+\DeclareTextFontCommand{\textsmallcaps}{\scshape}
+\newcommand{\allcapsspacing}[1]{\textls[200]{#1}}%
+\newcommand{\smallcapsspacing}[1]{\textls[50]{#1}}%
+\newcommand{\allcaps}[1]{\allcapsspacing{\MakeTextUppercase{#1}}}%
+\newcommand{\smallcaps}[1]{\smallcapsspacing{\scshape\MakeTextLowercase{#1}}}%
+\renewcommand{\textsc}[1]{\smallcapsspacing{\textsmallcaps{#1}}}%
+
+% Print just the chapter name without 'Chapter #.' in the running heads
 \newcommand{\runninghead}[1]{\textsc{\MakeTextLowercase{#1}}}
 \renewcommand{\chaptermark}[1]{\markboth{\runninghead{#1}}{}}
 \renewcommand{\sectionmark}[1]{\markright{\runninghead{#1}}}
@@ -69,11 +81,10 @@
   bookmarksopen,
   bookmarksnumbered=false,
   colorlinks,
-  pdfpagemode=None,
+  pdfpagemode=UseNone,
   urlcolor=black,
   citecolor=black,
   linkcolor=black,
-  pagecolor=black,
   plainpages=false,
   pdfpagelabels,
 }
@@ -90,11 +101,29 @@
   \tolerance=1000
 }
 
-% Set the heading styles
-\chapterstyle{dash}
-\setsecheadstyle{\Large\centering}
-\setsubsecheadstyle{\scshape\centering}
-\setsubsubsecheadstyle{\itshape\centering}
+
+% Set the chapter heading style
+\makechapterstyle{gitt}{%
+  \chapterstyle{default}%
+  \renewcommand*{\chapterheadstart}{}%
+  \renewcommand*{\printchaptername}{}%
+  \renewcommand*{\chapternamenum}{}%
+  \renewcommand*{\printchapternum}{}%
+  \renewcommand*{\afterchapternum}{}%
+  \renewcommand*{\printchaptertitle}[1]{%
+    %\centering\Large\adforn{64}\quad##1\quad\adforn{36}%
+    \begin{center}\Large##1\end{center}%
+  }%
+  \renewcommand*{\afterchaptertitle}{}%
+}
+\chapterstyle{gitt}
+
+% Set the sub-heading styles
+\setsecheadstyle{\centering\allcaps}
+\setsubsecheadstyle{\centering\itshape}
+\setsubsubsecheadstyle{\centering\smallcaps}
+\newcommand{\paraheading}[1]{\smallcaps{#1}\quad}
+\setparaheadstyle{\paraheading}
 
 
 % give us a begin{trenches}
