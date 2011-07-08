@@ -43,7 +43,6 @@
 \RequirePackage[osf,sc]{mathpazo}
 
 % Ornaments
-\RequirePackage{adforn}
 
 % microtype makes justified text look nicer by allowing punctuation and some
 % letters to hang slightly into the margin
@@ -113,7 +112,6 @@
   \renewcommand*{\printchapternum}{}%
   \renewcommand*{\afterchapternum}{}%
   \renewcommand*{\printchaptertitle}[1]{%
-    %\centering\Large\adforn{64}\quad##1\quad\adforn{36}%
     \begin{center}\Large##1\end{center}%
   }%
   \renewcommand*{\afterchaptertitle}{}%
