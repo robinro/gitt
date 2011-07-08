@@ -25,7 +25,9 @@
 
 % Import packages
 \RequirePackage{graphicx}
-\RequirePackage[usenames,dvipsnames,svgnames]{xcolor}
+\RequirePackage{eso-pic}
+\PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor}
+%\RequirePackage[usenames,dvipsnames,svgnames]{xcolor}
 \RequirePackage{fancyvrb,relsize}
 \RequirePackage[final]{microtype}
 \RequirePackage{tikz}
