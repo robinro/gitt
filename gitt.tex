@@ -7,13 +7,15 @@
 
 \begin{document}
 
-% Preamble stuff
+% Front matter
+\frontmatter
 \coverpage{images/fcover-new.pdf}
 \maketitle
 \cleardoublepage
 \tableofcontents
 
-% Include all the individual chapters
+% Main matter
+\mainmatter
 \include{intro}
 \include{setup}
 \include{chap1}
@@ -34,4 +36,9 @@
 \include{afterhours8}
 \include{ack}
 \include{index}
+
+% Back matter
+\backmatter
+\include{ack}
+\printindex
 \end{document}
