@@ -35,6 +35,7 @@
 \RequirePackage{eso-pic}
 \PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor}
 \makeindex
+\RequirePackage{xspace}
 
 % Use Latin Modern for the sans serif font
 \RequirePackage{lmodern}
@@ -216,3 +217,5 @@
     belowskip=14pt
   }
 }{}
+
+\newcommand{\GITT}{\textit{GITT}\xspace}
