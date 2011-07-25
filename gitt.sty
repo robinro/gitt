@@ -1,0 +1,116 @@
+%
+% Book design for Git in the Trenches
+%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+
+\ProvidesPackage{gitt}[2011/07/25 v1.0.0 GITT book design]
+
+% Import packages
+\RequirePackage{graphicx}
+\RequirePackage{eso-pic}
+\RequirePackage{relsize}
+\RequirePackage[final]{microtype}
+\RequirePackage{tikz}
+\RequirePackage{makeidx}
+\makeindex
+\RequirePackage{xspace}
+
+% give us a begin{trenches}
+\newenvironment{trenches}{%
+  \begin{quote}%
+    \begin{sffamily}%
+      \textbf{In the trenches\ldots}\par
+}{%
+    \end{sffamily}%
+  \end{quote}%
+}
+
+% Callout boxes
+\newsavebox{\callout@contents}
+\newcommand{\callout@type}{}
+\newcommand{\callout@title}{}
+\newenvironment{callout}[2]{%
+  \xdef\callout@type{#1}% typeset in a box along the left
+  \xdef\callout@title{#2}% typeset in a box along the top
+  \begin{lrbox}{\callout@contents}%
+    \begin{minipage}{.9\textwidth}%
+}{%
+    \end{minipage}%
+  \end{lrbox}%
+  \begin{figure}[hbt]%
+    \tikzstyle{mybox} = [draw=black, fill=gray!20, very thick, rectangle, rounded corners, inner sep=15pt, inner ysep=20pt]
+    \tikzstyle{fancytitle} = [fill=black, text=white]
+    \hskip-10pt% allows the type block to hang into the left margin
+    \begin{tikzpicture}%
+      \node[mybox] (box) {\usebox{\callout@contents}};
+      \node[fancytitle, right=16pt] at (box.north west) {\callout@title};
+      \node[fancytitle, rounded corners] at (box.west) {\rotatebox{90}{\callout@type}};
+    \end{tikzpicture}%
+  \end{figure}%
+}
+
+% Inserts a full-page graphic.
+\newcommand{\coverpage}[1]{%
+  \thispagestyle{empty}%
+  \IfFileExists{#1}{%
+    \AddToShipoutPicture*{\put(0,0){\includegraphics[width=\paperwidth,height=\paperheight]{#1}}}%
+  }{%
+    \ClassWarningNoLine{gitt}{Missing cover page graphic:\MessageBreak #1}%
+  }%
+  \null\cleardoublepage%
+}
+
+\newcommand{\indexref}[1]{%
+  \index{#1|textit}%
+}
+
+\newcommand{\indexcom}[2]{%
+  \index{#1@\texttt{#2}}
+}
+
+\newcommand{\indexgit}[1]{%
+  \texttt{git #1}%
+  \index{git commands!#1@\texttt{#1}}%
+}
+
+\newcommand{\GITT}{\textit{GITT}\xspace}
+
+\RequirePackage{listings}
+%\RequirePackage{courier}
+\lstnewenvironment{code}{
+  \lstset{
+    basicstyle=\footnotesize\ttfamily,
+    identifierstyle=\footnotesize\ttfamily,
+    commentstyle=\footnotesize\ttfamily,
+    stringstyle=\footnotesize\ttfamily,
+    keywordstyle=\footnotesize\bfseries\ttfamily,
+    frame=leftline,
+    framerule=1mm,
+    framextopmargin=0pt,
+    framexbottommargin=0pt,
+    framexleftmargin=2pt,
+    framexrightmargin=2pt,
+    xleftmargin=8pt,
+    xrightmargin=2pt,
+    breaklines=true,
+    breakatwhitespace=true,
+    breakindent=4pt,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookrightarrow}},
+    tabsize=2,
+    showstringspaces=false,
+    aboveskip=14pt,
+    belowskip=14pt
+  }
+}{}
+
+% Indicates thought breaks
+\newcommand{\thoughtbreak}{%
+  \par\begin{center}*\quad*\quad*\end{center}\par
+}
+
+% Temporary experiment with \subsubsection
+\renewcommand{\subsubsection}[1]{%
+  \newthought{#1.\quad}%
+}
+
