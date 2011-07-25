@@ -607,8 +607,7 @@ This will affect commits, blobs and trees.
 We should make a distinction here.
 We are really only worried about pushing to a branch which is currently checked out.
 Pushing to a non-bare repository will mean that the index will get changed, as it should reflect what the branch looks like at HEAD.
-\newline
-\newline
+\medskip
 Now this causes a problem when we are trying to see what has been modified in the working directory when compared to the HEAD.
 As our working copy will contain older versions of the files than are in the index, it will appear as if many more changes have occurred and we risk undoing those changes.
 For these reasons, it is much simpler just to push only to bare repositories.
