@@ -59,6 +59,14 @@
 \DeclareOptionX[tufte]<common>{b5paper}{\setboolean{@tufte@bfivepaper}{true}}
 
 %%
+% `quarto' option
+
+\newboolean{@tufte@quarto}
+\DeclareOptionX[tufte]<common>{quarto}{\setboolean{@tufte@quarto}{true}}
+
+\setboolean{@tufte@quarto}{true}
+
+%%
 % `sfsidenotes' option -- typesets sidenotes in sans serif typeface
 
 \newboolean{@tufte@sfsidenotes}
@@ -427,6 +435,10 @@
 
 \ifthenelse{\boolean{@tufte@bfivepaper}}
   {\geometry{paperwidth=176mm,paperheight=250mm,left=14.66mm,top=13.88mm,textwidth=102.66mm,marginparsep=7.33mm,marginparwidth=36.66mm,textheight=38\baselineskip,includehead}}
+  {}
+
+\ifthenelse{\boolean{@tufte@quarto}}
+  {\geometry{paperwidth=189mm,paperheight=246.5mm,left=27.9mm,top=19.1mm,textwidth=108.1mm,marginparsep=3mm,marginparwidth=30mm,textheight=37\baselineskip,includehead}}
   {}
 
 \ifthenelse{\boolean{@tufte@symmetric}}
